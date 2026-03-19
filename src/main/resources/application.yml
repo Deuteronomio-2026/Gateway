@@ -3,17 +3,36 @@ spring:
     name: gateway-service
   cloud:
     gateway:
-      routes: []  # las rutas las definimos después
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users/**
+
+        - id: scheduling-service
+          uri: lb://scheduling-service
+          predicates:
+            - Path=/api/sessions/**
+
+        - id: video-service
+          uri: lb://video-service
+          predicates:
+            - Path=/api/video/**
+
+        - id: offer-service
+          uri: lb://offer-service
+          predicates:
+            - Path=/api/offers/**
 
 server:
   port: 8080
 
 eureka:
   client:
-    enabled: false  # desactivar hasta tener Eureka corriendo
+    enabled: false
 
 management:
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: health, info, gateway
