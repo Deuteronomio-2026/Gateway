@@ -20,7 +20,7 @@ spring:
             - Path=/api/video/**
 
         - id: offer-service
-          uri: lb://offer-service
+          uri: http://localhost:8083
           predicates:
             - Path=/api/offers/**
 
