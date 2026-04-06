@@ -36,3 +36,43 @@ jobs:
         with:
           name: jacoco-report
           path: target/site/jacoco/
+
+      - name: Set lowercase owner
+        if: github.ref == 'refs/heads/main'
+        run: echo "OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        if: github.ref == 'refs/heads/main'
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ env.OWNER }}/gateway-service:latest
+
+  deploy:
+    name: Deploy to Azure
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Azure login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Container Apps
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az containerapp update \
+              --name gateway-service \
+              --resource-group offer-service-rg \
+              --image ghcr.io/deuteronomio-2026/gateway-service:latest
