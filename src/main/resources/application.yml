@@ -12,17 +12,17 @@ spring:
             - RewritePath=/api/user/(?<segment>.*), /api/${segment}
 
         - id: scheduling-service
-          uri: lb://scheduling-service
+          uri: http://localhost:8082
           predicates:
             - Path=/api/sessions/**
 
         - id: video-service
-          uri: lb://video-service
+          uri: http://localhost:8084
           predicates:
             - Path=/api/video/**
 
         - id: offer-service
-          uri: http://localhost:8083
+          uri: https://offer-service.orangebay-0b927206.eastus.azurecontainerapps.io
           predicates:
             - Path=/api/offers/**
 
