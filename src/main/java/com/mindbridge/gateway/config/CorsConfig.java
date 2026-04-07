@@ -12,7 +12,8 @@ public class CorsConfig {
     @Bean
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("http://localhost:5173");   // Origen del frontend
+        corsConfig.addAllowedOrigin("http://localhost:5173");
+        corsConfig.addAllowedOrigin("https://front-mind-bridge.vercel.app"); // Origen del frontend
         corsConfig.addAllowedMethod("*");                       // Todos los métodos
         corsConfig.addAllowedHeader("*");                       // Todas las cabeceras
         corsConfig.setAllowCredentials(true);                   // Si usas cookies/token
