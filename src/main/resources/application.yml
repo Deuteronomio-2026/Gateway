@@ -5,7 +5,7 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: http://localhost:8081
+          uri: https://user-service.orangebay-0b927206.eastus.azurecontainerapps.io
           predicates:
             - Path=/api/user/**
           filters:
