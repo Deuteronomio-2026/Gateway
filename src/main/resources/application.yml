@@ -12,9 +12,11 @@ spring:
             - RewritePath=/api/user/(?<segment>.*), /api/${segment}
 
         - id: scheduling-service
-          uri: http://localhost:8082
+          uri: http://52.6.97.237:8082
           predicates:
-            - Path=/api/sessions/**
+            - Path=/api/sessions,/api/sessions/**
+          filters:
+            - RewritePath=/api/sessions(?<segment>/?.*), /sessions${segment}
 
         - id: video-service
           uri: http://localhost:8084
