@@ -23,6 +23,11 @@ spring:
           predicates:
             - Path=/api/offers/**
 
+        - id: event-service
+          uri: ${EVENT_SERVICE_URI:https://videochat-sfu-git-04071730.azurewebsites.net}
+          predicates:
+            - Path=/api/events/**
+
         - id: video-service-chat-api
           uri: https://videochat-sfu-git-04071730.azurewebsites.net
           predicates:
