@@ -38,6 +38,11 @@ spring:
           predicates:
             - Path=/socket.io/**
 
+        - id: group-session-service
+          uri: https://group-session-service.orangebay-0b927206.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/group-sessions/**
+
 server:
   port: 8080
 
