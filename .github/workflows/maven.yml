@@ -1,5 +1,4 @@
 name: CI — MindBridge Gateway
-
 on:
   push:
     branches:
@@ -9,11 +8,9 @@ on:
     branches:
       - main
       - develop
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -33,9 +30,11 @@ jobs:
 
       - name: Subir reporte de cobertura
         uses: actions/upload-artifact@v4
+        if: false
         with:
           name: jacoco-report
           path: target/site/jacoco/
+          retention-days: 1
 
       - name: Set lowercase owner
         if: github.ref == 'refs/heads/main'
