@@ -24,17 +24,17 @@ spring:
             - Path=/api/offers/**
 
         - id: event-service
-          uri: ${EVENT_SERVICE_URI:https://videochat-sfu-git-04071730.azurewebsites.net}
+          uri: ${EVENT_SERVICE_URI:http://52.230.166.43:3000}
           predicates:
             - Path=/api/events/**
 
         - id: video-service-chat-api
-          uri: https://videochat-sfu-git-04071730.azurewebsites.net
+          uri: http://52.230.166.43:3000
           predicates:
             - Path=/api/chat/**
 
         - id: video-service-socket
-          uri: wss://videochat-sfu-git-04071730.azurewebsites.net
+          uri: ws://52.230.166.43:3000
           predicates:
             - Path=/socket.io/**
 
