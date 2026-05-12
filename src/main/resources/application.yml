@@ -43,6 +43,11 @@ spring:
           predicates:
             - Path=/api/group-sessions/**
 
+        - id: notification-service
+          uri: https://notification-service.orangebay-0b927206.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/notifications/**
+
 server:
   port: 8080
 
