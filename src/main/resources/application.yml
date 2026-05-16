@@ -12,7 +12,7 @@ spring:
             - RewritePath=/api/user/(?<segment>.*), /api/${segment}
 
         - id: scheduling-service
-          uri: http://52.6.97.237:8082
+          uri: https://scheduling-app.politefield-ce7ea404.brazilsouth.azurecontainerapps.io
           predicates:
             - Path=/api/sessions,/api/sessions/**
           filters:
