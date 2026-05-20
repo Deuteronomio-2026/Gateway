@@ -30,7 +30,7 @@ spring:
 
         - id: video-service-chat-api
           uri: http://52.230.166.43:3000
-          predicates:
+          predicates: 
             - Path=/api/chat/**
 
         - id: video-service-socket
@@ -47,6 +47,13 @@ spring:
           uri: https://notification-service.orangebay-0b927206.eastus.azurecontainerapps.io
           predicates:
             - Path=/api/notifications/**
+
+        - id: auth-service
+          uri: https://user-service.orangebay-0b927206.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/auth,/auth/**
+          filters:
+            - RewritePath=/auth(?<segment>/?.*), /api/auth${segment}
 
 server:
   port: 8080
