@@ -16,7 +16,7 @@ spring:
           predicates:
             - Path=/api/sessions,/api/sessions/**
           filters:
-            - RewritePath=/api/sessions(?<segment>/?.*), /sessions${segment}
+            - RewritePath=/api/sessions(?<segment>/?.*), /sessions$\{segment}
 
         - id: offer-service
           uri: https://offer-service.orangebay-0b927206.eastus.azurecontainerapps.io
