@@ -30,6 +30,8 @@ public class CorsConfig {
         }
 
         allowedOrigins.forEach(corsConfig::addAllowedOrigin);
+        corsConfig.addAllowedOriginPattern("https://*.vercel.app");
+        corsConfig.addAllowedOriginPattern("http://localhost:*");
         corsConfig.addAllowedMethod("*");                       // Todos los métodos
         corsConfig.addAllowedHeader("*");                       // Todas las cabeceras
         corsConfig.setAllowCredentials(true);                   // Si usas cookies/token

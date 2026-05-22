@@ -55,6 +55,12 @@ spring:
           filters:
             - RewritePath=/auth(?<segment>/?.*), /api/auth$\{segment}
 
+        # Compatibilidad para clientes que llaman /api/auth/** directamente
+        - id: auth-service-api
+          uri: https://user-service.orangebay-0b927206.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/auth/**
+
 server:
   port: 8080
 
